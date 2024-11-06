@@ -1,15 +1,21 @@
 
 function convertToBinary() {
-    const displayResult = document.getElementById("display-result");
+    const displayResult = document.getElementById("binaryResult");
     let number = document.getElementById("decimalInput").value;
 
-    let result = [];
+    if (isNaN(number) || number.trim() === "") {
+        displayResult.textContent = ""; 
+        return;
+    }
 
+    number = parseInt(number, 10);
+
+    let result = [];
     displayResult.textContent = "";
 
     while (number > 0) {
         result.push(number % 2);
-        number = (number - (number % 2)) / 2; // Division entière
+        number = Math.floor(number / 2);
     }
 
     displayResult.textContent = result.reverse().join("") || '0';
